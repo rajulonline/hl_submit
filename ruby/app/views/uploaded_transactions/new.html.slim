@@ -30,6 +30,6 @@ h1 New Transaction
     = f.select :status, %w(sold pending closed cancelled expired active)
   .form-group
     = f.label :property_type
-    = f.select :property_type, %w(condo single_family_home multi_family_home commercial mobile_home land)
+    = f.select :property_type, %w(condo single_family_home multi_family_home commercial mobile_home land)  
 
   = f.submit "Save", class: "btn btn-primary"
