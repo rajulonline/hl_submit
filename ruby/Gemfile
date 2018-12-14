@@ -20,6 +20,8 @@ gem 'kaminari'
 
 gem "byebug"
 gem 'activerecord-import', '~> 0.15.0'
+gem 'materialize-sass', '~> 1.0.0'
+gem 'material_icons'
 
 
 group :development, :test do

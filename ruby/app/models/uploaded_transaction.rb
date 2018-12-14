@@ -11,13 +11,4 @@ class UploadedTransaction < ApplicationRecord
     "#{address}, #{city}, #{state} #{zip}"
   end
 
-  def bulkTransactionsUploader
-    items = []
-    # byebug
-    CSV.foreach('/Users/lraghavan/Desktop/csv/testing.csv', headers: true) do |row|
-      items << UploadedTransaction.new(row.to_h)
-    end
-    UploadedTransaction.import(items)
-  end
-
 end

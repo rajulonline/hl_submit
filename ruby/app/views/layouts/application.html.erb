@@ -10,7 +10,12 @@
     <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
     
     <%= javascript_include_tag "https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" %>
-    
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>            
   </head>
 
   <body>
@@ -40,6 +45,10 @@
         $(document).ready( function () {
           $('.myTable').DataTable();          
           } );
+
+        $(document).ready(function() {
+               $('select').formSelect();
+        });
       </script>
       <%= yield %>      
     </div>
