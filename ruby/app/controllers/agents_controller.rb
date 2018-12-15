@@ -8,9 +8,10 @@ class AgentsController < ApplicationController
     redirect_to agent_path(Agent.all.sample)
   end
 
-  def bulkTransactionsUploader
+  ##Used active record import for handling large transaction upload
+  def bulkTransactionsUploader(csv_file)
     items = []
-    CSV.foreach(params[:csv_file], headers: true) do |row|
+    CSV.foreach(csv_file, headers: true) do |row|
       items << UploadedTransaction.new(row.to_h)
     end
     UploadedTransaction.import(items)
