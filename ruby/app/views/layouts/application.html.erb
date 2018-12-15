@@ -5,10 +5,13 @@
     <%= csrf_meta_tags %>
     
     <%= stylesheet_link_tag    "https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" %>
-    
+    <%= stylesheet_link_tag    "https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css" %>
+    <%= stylesheet_link_tag    "https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css"%>  
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
     
+    <%= javascript_include_tag "https://code.jquery.com/jquery-3.3.1.js"%>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag  "https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js" %>  
     <%= javascript_include_tag "https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" %>
 
     <!-- Compiled and minified CSS -->
@@ -21,7 +24,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="#">HomeLight</a>
+        <a class="navbar-brand" href="/">HomeLight</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,9 +46,24 @@
     <div class="container">
       <script>
         $(document).ready( function () {
-          $('.myTable').DataTable();          
-          } );
+              $('.mdl-data-table').DataTable( {
+                      columnDefs: [
+                  {
+                      targets: [ 0 ],
+                      className: 'mdl-data-table__cell--non-numeric'
+                  }
+                ]
+              } );
 
+            $('.mdl-data-table tbody').on( 'click', 'tr', function () {
+                $(this).toggleClass('selected');
+                console.log($(this));
+            } );
+            
+            $('.btn btn-primary').click( function () {
+                alert( table.rows('.selected').data().length +' row(s) selected' );
+            } );
+        } );
         $(document).ready(function() {
                $('select').formSelect();
         });

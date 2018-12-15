@@ -4,7 +4,7 @@ p = @agent.bio
 = link_to "Add Transaction", new_agent_uploaded_transaction_path(@agent), class: "btn btn-primary"
 
 h3 Recent Transactions
-table class="myTable"
+table class="mdl-data-table"
   thead
     tr
       th Address
@@ -13,7 +13,7 @@ table class="myTable"
       th Sold
       th Selling Price
       
-  tbody  
+  tbody
     - @uploaded_transactions.each do |uploaded_transaction|
       tr
         td = uploaded_transaction.full_address
