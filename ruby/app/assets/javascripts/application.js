@@ -16,6 +16,7 @@
 //= require popper
 //= require bootstrap
 //= require materialize
+//= require rails.validations
 //= require_tree .
 
 

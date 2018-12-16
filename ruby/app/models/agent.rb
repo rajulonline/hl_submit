@@ -1,4 +1,4 @@
-class Agent < ApplicationRecord
+class Agent < ApplicationRecord  
   has_many :uploaded_seller_transactions, class_name: "UploadedTransaction", foreign_key: :listing_agent_id
   has_many :uploaded_buyer_transactions, class_name: "UploadedTransaction", foreign_key: :selling_agent_id
 
