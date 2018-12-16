@@ -18,7 +18,7 @@ class UploadedTransactionsController < ApplicationController
       render "new"
       end
     else
-      Rails.logger.debug(json: {status: "error", code: 3000, message: "Mandatory fields were not filled"})
+      Rails.logger.debug(json: {status: "error", code: 3000, message: "Incorrect value(s) filled for mandatory fields"})
     end
   end
 
@@ -28,7 +28,7 @@ class UploadedTransactionsController < ApplicationController
     params.require(:uploaded_transaction).permit(:address, :city, :state, :zip, :listing_agent, :listing_price, :listing_date, :selling_price, :selling_agent, :selling_date, :status, :property_type)
   end
 
-  def checkParamValues(uploaded_transaction_params)
+  def checkParamValues(params)
     params.has_key?(:address) && params.has_key?(:city) &&
       params.has_key?(:state) && params.has_key?(:zip) &&
       params.has_key?(:listing_agent) && params.has_key?(:listing_price) &&
