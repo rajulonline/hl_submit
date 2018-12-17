@@ -16,4 +16,5 @@ class AgentsController < ApplicationController
     end
     UploadedTransaction.import(items)
   end
+
 end
