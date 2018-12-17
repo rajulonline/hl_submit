@@ -28,13 +28,13 @@ class UploadedTransactionsController < ApplicationController
     params.require(:uploaded_transaction).permit(:address, :city, :state, :zip, :listing_agent, :listing_price, :listing_date, :selling_price, :selling_agent, :selling_date, :status, :property_type)
   end
 
-  def checkParamValues(params)
-    params.has_key?(:address) && params.has_key?(:city) &&
-      params.has_key?(:state) && params.has_key?(:zip) &&
-      params.has_key?(:listing_agent) && params.has_key?(:listing_price) &&
-      params.has_key?(:listing_date) && params.has_key?(:selling_price) &&
-      params.has_key?(:selling_date) && params.has_key?(:status) &&
-      params.has_key?(:property_type)
+  def checkParamValues(form_values)
+    form_values.has_key?(:address) && form_values.has_key?(:city) &&
+      form_values.has_key?(:state) && form_values.has_key?(:zip) &&
+      form_values.has_key?(:listing_agent) && form_values.has_key?(:listing_price) &&
+      form_values.has_key?(:listing_date) && form_values.has_key?(:selling_price) &&
+      form_values.has_key?(:selling_date) && form_values.has_key?(:status) &&
+      form_values.has_key?(:property_type)
   end
 
 end
