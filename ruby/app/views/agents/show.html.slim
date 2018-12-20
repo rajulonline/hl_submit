@@ -1,3 +1,11 @@
+= form_with scope: :uploaded_transaction, url: "/uploaded_transaction/search", method: :get, local: true do |form|
+  p
+    = form.label :Search_by_Address_City_Status
+    br
+    = form.text_field :query, value: params[:uploaded_transaction].presence && params[:uploaded_transaction][:query]
+  p
+    = form.submit 'Search'
+
 h1 = @agent.full_name
 p = @agent.bio
 

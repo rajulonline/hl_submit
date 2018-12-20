@@ -24,6 +24,8 @@ gem 'materialize-sass', '~> 1.0.0'
 gem 'material_icons'
 gem 'client_side_validations'
 gem 'html2slim'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 
 group :development, :test do
