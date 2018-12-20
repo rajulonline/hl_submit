@@ -1,7 +1,9 @@
 h1 = @agent.full_name
 p = @agent.bio
 
-= link_to "Add Transaction", new_agent_uploaded_transaction_path(@agent), class: "btn btn-primary"
+= link_to "Add Transaction", new_agent_uploaded_transaction_path(@agent), class: "btn btn-primary" 
+span> 
+= link_to "Bulk Upload Transaction", '/bulkuploadcsv', class: "btn btn-primary"
 
 h3 Recent Transactions
 table class="mdl-data-table"

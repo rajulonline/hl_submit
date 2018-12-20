@@ -1,0 +1,7 @@
+= form_with scope: :agent, url: '/bulkTransactionsUploader', method: :post, local: true do |form|
+  p
+    = form.label :Bulk_Transaction_Uploader
+    br
+    = form.file_field :query, value: params[:agent].presence && params[:agent][:query],class: "form-control"
+  p
+    = form.submit 'Bulk Upload Data',class: "btn btn-primary"
