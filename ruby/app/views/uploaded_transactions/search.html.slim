@@ -1,0 +1,27 @@
+- unless @uploaded_transaction.nil?
+  - if @uploaded_transaction.empty?
+    h2
+      | No posts found matching your query.
+  - else
+    h2
+      | Search results
+    table[style="width: 100%;"]
+      thead
+        tr
+          th
+            | Address
+          th
+            | City
+          th
+            | Status         
+
+      tbody
+        - @uploaded_transaction.each do |post|
+          tr
+            td
+              = post.address
+            td
+              = post.city
+            td
+              = post.status            
+      tbody
