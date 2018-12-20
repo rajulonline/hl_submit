@@ -7,6 +7,17 @@ class UploadedTransaction < ApplicationRecord
   require 'csv'
   require "activerecord-import"
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  settings do
+    mappings dynamic: false do
+      indexes :address, type: :text
+      indexes :city, type: :text, analyzer: :english      
+      indexes :status, type: :text, analyzer: :english      
+    end
+  end
+
   scope :single_family_homes, -> { where(property_type: "single_family_home") }
   scope :sold, -> { where(status: "sold") }
   
@@ -16,11 +27,32 @@ class UploadedTransaction < ApplicationRecord
 
   def bulkTransactionsUploader
     items = []
-    # byebug
     CSV.foreach(params[:csv_file], headers: true) do |row|
       items << UploadedTransaction.new(row.to_h)
     end
     UploadedTransaction.import(items)
+  end
+
+  def self.search_published(query)
+    self.search({
+      from: 0, size: 1000,
+      query: {
+        bool: {
+          should: [
+          {
+            multi_match: {
+              query: query,
+              fields: [:address, :city, :status]
+            }
+          },
+          {
+            match: {
+              published: true
+            }
+          }]
+        }
+      }
+    })
   end
 
 end

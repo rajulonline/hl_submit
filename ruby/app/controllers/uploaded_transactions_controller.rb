@@ -22,6 +22,14 @@ class UploadedTransactionsController < ApplicationController
     end
   end
 
+  def search
+  query = params[:uploaded_transaction].presence && params[:uploaded_transaction][:query]
+
+  if query
+    @uploaded_transaction = UploadedTransaction.search_published(query)
+  end
+end
+
   private
 
   def uploaded_transaction_params
