@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 gem "rails", "~> 5.1.4"
-gem "sqlite3"
+gem "pg", "~> 0.18" 
 gem "puma", "~> 3.7"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
@@ -17,6 +17,7 @@ gem "slim"
 gem "jquery-rails"
 gem "bootstrap"
 gem 'kaminari'
+gem "devise"
 
 gem "byebug"
 gem 'activerecord-import', '~> 0.15.0'
@@ -26,6 +27,8 @@ gem 'client_side_validations'
 gem 'html2slim'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'serviceworker-rails'
+gem 'bonsai-elasticsearch-rails'
 
 
 group :development, :test do
