@@ -16,11 +16,12 @@ class UploadedTransactionsController < ApplicationController
       else
       render "new"
       end
+
   end
 
   def search
   query = params[:uploaded_transaction].presence && params[:uploaded_transaction][:query]
-  
+
   if query
     @uploaded_transaction = UploadedTransaction.search_published(query)
   end
@@ -38,7 +39,7 @@ end
       params.has_key?(:listing_agent) && params.has_key?(:listing_price) &&
       params.has_key?(:listing_date) && params.has_key?(:selling_price) &&
       params.has_key?(:selling_date) && params.has_key?(:status) &&
-      params.has_key?(:property_type)
+ 
   end
 
 end
