@@ -10,33 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016021817) do
+ActiveRecord::Schema.define(version: 20181223050059) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "agents", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.text "first_name"
+    t.text "last_name"
     t.text "bio"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "uploaded_transactions", force: :cascade do |t|
-    t.string "address"
-    t.string "city"
-    t.string "state"
-    t.string "zip"
+    t.text "address"
+    t.text "city"
+    t.text "state"
+    t.text "zip"
     t.date "listing_date"
-    t.integer "listing_price"
-    t.integer "listing_agent_id"
+    t.bigint "listing_price"
+    t.bigint "listing_agent_id"
     t.date "selling_date"
-    t.integer "selling_price"
-    t.integer "selling_agent_id"
-    t.string "status"
-    t.string "property_type"
+    t.bigint "selling_price"
+    t.bigint "selling_agent_id"
+    t.text "status"
+    t.text "property_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["listing_agent_id"], name: "idx_49269_index_uploaded_transactions_on_listing_agent_id"
+    t.index ["selling_agent_id"], name: "idx_49269_index_uploaded_transactions_on_selling_agent_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["listing_agent_id"], name: "index_uploaded_transactions_on_listing_agent_id"
-    t.index ["selling_agent_id"], name: "index_uploaded_transactions_on_selling_agent_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

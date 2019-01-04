@@ -10,6 +10,13 @@ class UploadedTransaction < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  # only send to Elasticsearch what we care about searching and running stats on
+  def as_indexed_json(*_)
+    as_json(
+      only: [:address, :city, :status]
+    )
+  end
+
   settings do
     mappings dynamic: false do
       indexes :address, type: :text

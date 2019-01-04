@@ -2,30 +2,35 @@
 <html>
   <head>
     <title>Uploaded Transactions Manager</title>
+    <meta name="Description" content="Simple App built using Rails 5,ReactJS,Postgresql, Elastic Search and Materialize design">
     <%= csrf_meta_tags %>
     
-    <%= stylesheet_link_tag    "https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" %>
-    <%= stylesheet_link_tag    "https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css" %>
-    <%= stylesheet_link_tag    "https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css"%>  
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload" %>
     
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload", :async => true %>
     <%= javascript_include_tag "https://code.jquery.com/jquery-3.3.1.js"%>
     <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
-    <%= javascript_include_tag  "https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js" %>  
-    <%= javascript_include_tag "https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" %>
+    <%= stylesheet_link_tag    "https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css", :async => true %>
+    <%= stylesheet_link_tag    "https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css" %>
+    <%= stylesheet_link_tag    "https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css", :async => true%>      
+    <%= javascript_include_tag "https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"%>
+    <%= javascript_include_tag  "https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js" %> 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" async></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>            
-  </head>
-
+                
+<link rel="manifest" href="/manifest.json" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes"></head>
+<meta name="theme-color" content="#317EFB"/>
+<% if user_signed_in? %>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
+      <div class="container-fluid">
+        <div class="row"></div>
         <a class="navbar-brand" href="/">HomeLight</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -41,7 +46,11 @@
                 <% end %>
               </div>
             </li>
-          </ul>
+          </ul>        
+          <li>  
+          <%= link_to('Logout', destroy_user_session_path, method: :delete, style: 'color:#3700B3;' ) %>
+          </li>
+        <% end %>
         </div>
       </div>
     </nav>
@@ -58,21 +67,30 @@
               } );
 
             $('.mdl-data-table tbody').on( 'click', 'tr', function () {
-                $(this).toggleClass('selected');
-                console.log($(this));
+                $(this).toggleClass('selected');                
+                $('.model1').modal();
+                $(this).modal('open');
             } );
             
             $('.btn btn-primary').click( function () {
                 alert( table.rows('.selected').data().length +' row(s) selected' );
+                } );
             } );
-        } );
-        $(document).ready(function() {
+
+            $(document).ready(function() {
                $('select').formSelect();
-        });
-        $(document).ready(function(){
-    $('.tooltipped').tooltip();
+            });
+            
+            $(document).ready(function(){
+              $('.tooltipped').tooltip();
+            });
+
+          $(document).ready(function(){
+          $('.modal').modal();
   });
       </script>
+      <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
       <%= yield %>      
     </div>
   </body>

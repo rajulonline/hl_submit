@@ -1,6 +1,6 @@
 class AgentsController < ApplicationController
   require 'csv'
-
+  before_action :authenticate_user!
   def show
     @agent = Agent.find(params[:id])
     @uploaded_transactions = @agent.all_transactions
