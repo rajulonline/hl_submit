@@ -19,4 +19,5 @@
 //= require rails.validations
 //= require_tree .
 
+
 //= require serviceworker-companion

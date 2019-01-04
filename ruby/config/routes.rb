@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-
   devise_for :users
-
   root to: "agents#random_agent"
 
   match '/bulkuploadcsv', to: 'agents#bulkuploadcsv',via: [:get, :post]
